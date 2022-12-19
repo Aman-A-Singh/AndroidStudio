@@ -25,6 +25,13 @@ class CreateMessageActivity : AppCompatActivity() {
         val intent = Intent(Intent.ACTION_SEND)
         intent.setType("text/plain")
         intent.putExtra(Intent.EXTRA_TEXT,messageText)
-        startActivity(intent);
+//        startActivity(intent);
+
+        /*chosenintent always asks user to choose an activity to send message*/
+        val chooserTitle:String = "Send Message" // Chooser title
+        val chosenIntent = Intent.createChooser(intent,chooserTitle)
+        startActivity(chosenIntent)
+
+
     }
 }
