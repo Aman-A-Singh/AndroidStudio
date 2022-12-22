@@ -1,4 +1,4 @@
-package com.cornerstoneondemand.expensetracker.ui.main
+package com.cornerstoneondemand.expensetracker.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

@@ -6,9 +6,7 @@ import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.tabs.TabLayout
 import androidx.viewpager.widget.ViewPager
 import androidx.appcompat.app.AppCompatActivity
-import android.view.Menu
-import android.view.MenuItem
-import com.cornerstoneondemand.expensetracker.ui.main.SectionsPagerAdapter
+import com.cornerstoneondemand.expensetracker.adapters.SectionsPagerAdapter
 import com.cornerstoneondemand.expensetracker.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -27,6 +25,8 @@ class MainActivity : AppCompatActivity() {
         val tabs: TabLayout = binding.tabs
         tabs.setupWithViewPager(viewPager)
         val fab: FloatingActionButton = binding.fab
+
+        tabs.getTabAt(1)?.select()
 
         fab.setOnClickListener { view ->
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)

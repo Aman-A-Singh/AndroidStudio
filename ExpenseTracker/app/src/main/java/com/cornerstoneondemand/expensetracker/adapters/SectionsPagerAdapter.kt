@@ -1,4 +1,4 @@
-package com.cornerstoneondemand.expensetracker.ui.main
+package com.cornerstoneondemand.expensetracker.adapters
 
 import android.content.Context
 import androidx.fragment.app.Fragment
