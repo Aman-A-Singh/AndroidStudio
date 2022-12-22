@@ -13,7 +13,7 @@ import com.cornerstoneondemand.expensetracker.utilities.Category
 
 class ExpenseAdapter(private val context: Context): RecyclerView.Adapter<ExpenseAdapter.ExpenseViewHolder> (){
 
-    private val expenseList = ArrayList<Expense>()
+    private var expenseList = ArrayList<Expense>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ExpenseViewHolder {
         return ExpenseViewHolder(
@@ -40,6 +40,13 @@ class ExpenseAdapter(private val context: Context): RecyclerView.Adapter<Expense
 
     override fun getItemCount(): Int {
         return expenseList.size
+    }
+
+    fun setExpense(newExpenseList:List<Expense>){
+        expenseList.clear()
+        expenseList.addAll(newExpenseList)
+
+        notifyDataSetChanged()
     }
 
     inner class ExpenseViewHolder(itemView : View):RecyclerView.ViewHolder(itemView){
