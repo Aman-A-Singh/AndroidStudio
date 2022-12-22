@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.room.TypeConverters
 import com.cornerstoneondemand.expensetracker.utilities.DATABASE_NAME
 
 /**
@@ -11,8 +12,8 @@ import com.cornerstoneondemand.expensetracker.utilities.DATABASE_NAME
  * Only one instance of this class should be created throughout the application
  * If the object of this class is already created then only that object should be accessible throughout the application
  */
-@Database(entities = [Expense::class], version = 1)
-
+@Database(entities = [Expense::class], version = 1, exportSchema = false)
+@TypeConverters(DateConverter::class)
 abstract class ExpenseDatabase:RoomDatabase() {
 
     abstract fun expenseDao():ExpenseDao
@@ -38,10 +39,9 @@ abstract class ExpenseDatabase:RoomDatabase() {
             return INSTANCE?: synchronized(this){//Checks if the INSTANCE is null
                 //Executes only if the INSTANCE is null else return the INSTANCE value
                 val instance = Room.databaseBuilder(
-                    context.applicationContext,
+                    context,
                     ExpenseDatabase::class.java,
                     DATABASE_NAME)
-                    .fallbackToDestructiveMigration()
                     .build()
 
                 INSTANCE = instance

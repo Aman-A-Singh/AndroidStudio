@@ -14,12 +14,12 @@ interface ExpenseDao {
     @Query("SELECT * FROM $DATABASE_NAME")
     fun getAll() : LiveData<List<Expense>>
 
-    @Query("SELECT * FROM $DATABASE_NAME where strf('%m',date)=strf('%m',date('now'))")
+    @Query("SELECT * FROM $DATABASE_NAME where strftime('%m',date)=strftime('%m',date('now'))")
     fun getThisMonthExpense():LiveData<List<Expense>>
 
-    @Query("SELECT * FROM $DATABASE_NAME where strf('%m',date)<strf('%m',date('now'))")
+    @Query("SELECT * FROM $DATABASE_NAME where strftime('%m',date)<strftime('%m',date('now'))")
     fun getLastMonthExpense():LiveData<List<Expense>>
 
-    @Query("SELECT * FROM $DATABASE_NAME where strf('%m',date)>strf('%m',date('now'))")
+    @Query("SELECT * FROM $DATABASE_NAME where strftime('%m',date)>strftime('%m',date('now'))")
     fun getFutureExpense():LiveData<List<Expense>>
 }

@@ -27,7 +27,7 @@ class LastMonthFragment : Fragment() {
         binding = FragmentLastMonthBinding.inflate(layoutInflater)
         //Initializing the UI
         initUi()
-        viewModel = ViewModelProvider(requireActivity()).get(ThisMonthViewModel::class.java)
+        viewModel = ViewModelProvider(this).get(ThisMonthViewModel::class.java)
         viewModel.thisMonthExpense.observe(this) { list ->
             list?.let{
                 adapter.setExpense(list)
@@ -35,9 +35,10 @@ class LastMonthFragment : Fragment() {
         }
     }
 
-    fun initUi(){
+    private fun initUi(){
         binding.recyclerViewLastMonth.setHasFixedSize(true)
         binding.recyclerViewLastMonth.layoutManager = LinearLayoutManager(requireContext())
+        adapter = ExpenseAdapter(requireActivity())
         binding.recyclerViewLastMonth.adapter = adapter
 
     }
