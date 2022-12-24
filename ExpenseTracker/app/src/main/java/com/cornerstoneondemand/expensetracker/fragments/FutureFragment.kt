@@ -36,8 +36,8 @@ class FutureFragment : Fragment() {
 
     private fun initUi(){
         binding.recyclerViewFuture.setHasFixedSize(true)
-        binding.recyclerViewFuture.layoutManager = LinearLayoutManager(requireContext())
-        adapter = ExpenseAdapter(requireActivity())
+        binding.recyclerViewFuture.layoutManager = LinearLayoutManager(activity)
+        adapter = ExpenseAdapter()
         binding.recyclerViewFuture.adapter = adapter
 
     }
