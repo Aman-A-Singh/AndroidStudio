@@ -11,13 +11,13 @@ import com.cornerstoneondemand.expensetracker.R
 import com.cornerstoneondemand.expensetracker.database.Expense
 import com.cornerstoneondemand.expensetracker.utilities.Category
 
-class ExpenseAdapter(private val context: Context): RecyclerView.Adapter<ExpenseAdapter.ExpenseViewHolder> (){
+class ExpenseAdapter(): RecyclerView.Adapter<ExpenseAdapter.ExpenseViewHolder> (){
 
     private var expenseList = ArrayList<Expense>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ExpenseViewHolder {
         return ExpenseViewHolder(
-            LayoutInflater.from(context).inflate(R.layout.expense_item,parent,false)
+            LayoutInflater.from(parent.context).inflate(R.layout.expense_item,parent,false)
         )
     }
 

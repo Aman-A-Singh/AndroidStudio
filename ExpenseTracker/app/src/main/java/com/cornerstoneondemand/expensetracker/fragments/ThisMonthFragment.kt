@@ -35,8 +35,8 @@ class ThisMonthFragment : Fragment() {
 
     private fun initUi(){
         binding.recyclerViewThisMonth.setHasFixedSize(true)
-        binding.recyclerViewThisMonth.layoutManager =LinearLayoutManager(requireContext())
-        adapter = ExpenseAdapter(requireActivity())
+        binding.recyclerViewThisMonth.layoutManager =LinearLayoutManager(activity)
+        adapter = ExpenseAdapter()
         binding.recyclerViewThisMonth.adapter = adapter
 
     }
