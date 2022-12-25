@@ -1,12 +1,13 @@
 package com.cornerstoneondemand.expensetracker
 
 import android.app.DatePickerDialog
+import android.graphics.Paint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
-import android.widget.Toast
+import android.widget.ArrayAdapter
 import androidx.lifecycle.ViewModelProvider
 import com.cornerstoneondemand.expensetracker.databinding.ActivityAddExpenseBinding
 import com.cornerstoneondemand.expensetracker.viewmodel.AddExpenseViewModel
@@ -48,13 +49,16 @@ class AddExpense : AppCompatActivity() {
 
         val dateFormat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
         viewModel.selectedDate.observe(this,{ date ->
-            binding.textViewDate.text = dateFormat.format(date)
+            binding.textViewDate.setText(dateFormat.format(date))
         })
 
         supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_close);
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        title="Add Expense"
+        title="Add Transaction"
 
+        val payment_modes = resources.getStringArray(R.array.payment_mode)
+        val arrayAdapter = ArrayAdapter(this, R.layout.custom_dropdown_payment_mode,payment_modes)
+        binding.spinnerPaymentMode.adapter = arrayAdapter
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -78,6 +82,6 @@ class AddExpense : AppCompatActivity() {
         var amount = binding.editTvAmount.text
         var category = binding.category.text
         var note = binding.editTextWriteNote
-        var mode = binding.editTvMode
+        var mode = binding.spinnerPaymentMode
     }
 }

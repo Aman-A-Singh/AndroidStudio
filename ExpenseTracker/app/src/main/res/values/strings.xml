@@ -3,4 +3,11 @@
     <string name="tab_text_1">LAST MONTH</string>
     <string name="tab_text_2">THIS MONTH</string>
     <string name="tab_text_3">FUTURE</string>
+
+
+    <string-array name="payment_mode">
+        <item>Cash</item>
+        <item>Card</item>
+        <item>E-Wallet</item>
+    </string-array>
 </resources>
