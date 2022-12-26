@@ -15,7 +15,7 @@ class ThisMonthViewModel(application: Application) : AndroidViewModel(applicatio
     init{
         val dao = ExpenseDatabase.getInstance(application).expenseDao()
         repository = ExpenseRepository(dao)
-        thisMonthExpense = repository.thisMonthExpense
+        thisMonthExpense = repository.allExpense
     }
 
 }

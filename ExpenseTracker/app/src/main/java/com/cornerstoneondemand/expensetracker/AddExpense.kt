@@ -4,12 +4,16 @@ import android.app.DatePickerDialog
 import android.graphics.Paint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.widget.ArrayAdapter
+import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
+import com.cornerstoneondemand.expensetracker.database.Expense
 import com.cornerstoneondemand.expensetracker.databinding.ActivityAddExpenseBinding
+import com.cornerstoneondemand.expensetracker.utilities.Category
 import com.cornerstoneondemand.expensetracker.viewmodel.AddExpenseViewModel
 import java.text.SimpleDateFormat
 import java.util.*
@@ -79,9 +83,17 @@ class AddExpense : AppCompatActivity() {
     }
 
     private fun saveExpense() {
-        var amount = binding.editTvAmount.text
-        var category = binding.category.text
-        var note = binding.editTextWriteNote
-        var mode = binding.spinnerPaymentMode
+        var amount = binding.editTvAmount.text.toString().toDouble()
+        var category = Category.fromInt(binding.category.text.toString().toInt())
+        var note = binding.editTextWriteNote.text.toString()
+        var mode = binding.spinnerPaymentMode.selectedItem.toString()
+        val dateFormat = SimpleDateFormat("dd/MM/yyyy")
+        var date =dateFormat.parse(binding.textViewDate.text.toString())
+
+        if(category!=null){
+            val expense:Expense = Expense(0,amount,category,note,date,mode)
+            viewModel.insert(expense)
+        }
+        finish()
     }
 }

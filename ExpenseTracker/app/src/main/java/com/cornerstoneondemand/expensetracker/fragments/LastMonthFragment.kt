@@ -7,46 +7,42 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.cornerstoneondemand.expensetracker.R
 import com.cornerstoneondemand.expensetracker.adapters.ExpenseAdapter
 import com.cornerstoneondemand.expensetracker.database.ExpenseDatabase
 import com.cornerstoneondemand.expensetracker.databinding.FragmentFutureBinding
 import com.cornerstoneondemand.expensetracker.databinding.FragmentLastMonthBinding
 import com.cornerstoneondemand.expensetracker.databinding.FragmentThisMonthBinding
+import com.cornerstoneondemand.expensetracker.viewmodel.LastMonthViewModel
 import com.cornerstoneondemand.expensetracker.viewmodel.ThisMonthViewModel
 
 
 class LastMonthFragment : Fragment() {
 
-    private lateinit var binding: FragmentLastMonthBinding
-    private lateinit var database: ExpenseDatabase
-    lateinit var viewModel: ThisMonthViewModel
+    lateinit var viewModel: LastMonthViewModel
     lateinit var adapter: ExpenseAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = FragmentLastMonthBinding.inflate(layoutInflater)
-        //Initializing the UI
-        initUi()
-        viewModel = ViewModelProvider(this).get(ThisMonthViewModel::class.java)
-        viewModel.thisMonthExpense.observe(this) { list ->
-            list?.let{
-                adapter.setExpense(list)
-            }
-        }
-    }
-
-    private fun initUi(){
-        binding.recyclerViewLastMonth.setHasFixedSize(true)
-        binding.recyclerViewLastMonth.layoutManager = LinearLayoutManager(activity)
-        adapter = ExpenseAdapter()
-        binding.recyclerViewLastMonth.adapter = adapter
-
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
+        val view = inflater.inflate(R.layout.fragment_last_month, container, false)
+        val recyclerView = view.findViewById<RecyclerView>(R.id.recycler_view_last_month)
+
+        recyclerView.setHasFixedSize(true)
+        recyclerView.layoutManager =LinearLayoutManager(activity)
+        adapter = ExpenseAdapter()
+        recyclerView.adapter = adapter
+
+        viewModel = ViewModelProvider(this).get(LastMonthViewModel::class.java)
+        viewModel.lastMonthExpense.observe(viewLifecycleOwner) { list ->
+            list?.let{
+                adapter.setExpense(list)
+            }
+        }
         return inflater.inflate(R.layout.fragment_last_month, container, false)
     }
 }

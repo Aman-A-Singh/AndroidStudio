@@ -8,6 +8,7 @@ import com.google.android.material.tabs.TabLayout
 import androidx.viewpager.widget.ViewPager
 import androidx.appcompat.app.AppCompatActivity
 import com.cornerstoneondemand.expensetracker.adapters.SectionsPagerAdapter
+import com.cornerstoneondemand.expensetracker.database.ExpenseDatabase
 import com.cornerstoneondemand.expensetracker.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -33,5 +34,10 @@ class MainActivity : AppCompatActivity() {
             val intent:Intent = Intent(this,AddExpense::class.java)
             startActivity((intent))
         }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        ExpenseDatabase.getInstance(this).close()
     }
 }
