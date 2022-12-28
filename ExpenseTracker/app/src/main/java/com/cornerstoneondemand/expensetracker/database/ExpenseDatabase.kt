@@ -6,6 +6,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import com.cornerstoneondemand.expensetracker.utilities.DATABASE_NAME
+import com.cornerstoneondemand.expensetracker.utilities.DateConverter
 
 /**
  * This class is resposible for creating the database in the application

@@ -10,18 +10,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.cornerstoneondemand.expensetracker.R
 import com.cornerstoneondemand.expensetracker.adapters.ExpenseAdapter
-import com.cornerstoneondemand.expensetracker.database.Expense
-import com.cornerstoneondemand.expensetracker.database.ExpenseDatabase
-import com.cornerstoneondemand.expensetracker.databinding.FragmentFutureBinding
-import com.cornerstoneondemand.expensetracker.databinding.FragmentThisMonthBinding
-import com.cornerstoneondemand.expensetracker.utilities.Category
 import com.cornerstoneondemand.expensetracker.viewmodel.FutureExpenseViewModel
-import com.cornerstoneondemand.expensetracker.viewmodel.ThisMonthViewModel
-import java.util.*
 
 class FutureFragment : Fragment() {
 
-    private lateinit var binding: FragmentFutureBinding
     lateinit var viewModel: FutureExpenseViewModel
     lateinit var adapter: ExpenseAdapter
 
@@ -29,7 +21,6 @@ class FutureFragment : Fragment() {
         super.onCreate(savedInstanceState)
 
     }
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

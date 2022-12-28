@@ -43,6 +43,6 @@ class LastMonthFragment : Fragment() {
                 adapter.setExpense(list)
             }
         }
-        return inflater.inflate(R.layout.fragment_last_month, container, false)
+        return view
     }
 }

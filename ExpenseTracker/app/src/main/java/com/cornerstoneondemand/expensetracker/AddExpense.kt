@@ -1,6 +1,7 @@
 package com.cornerstoneondemand.expensetracker
 
 import android.app.DatePickerDialog
+import android.content.Intent
 import android.graphics.Paint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -63,6 +64,10 @@ class AddExpense : AppCompatActivity() {
         val payment_modes = resources.getStringArray(R.array.payment_mode)
         val arrayAdapter = ArrayAdapter(this, R.layout.custom_dropdown_payment_mode,payment_modes)
         binding.spinnerPaymentMode.adapter = arrayAdapter
+
+        binding.category.setOnClickListener {
+            val intent: Intent = Intent(this,CategoryActivity::class.java)
+            startActivity((intent)) }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -84,7 +89,7 @@ class AddExpense : AppCompatActivity() {
 
     private fun saveExpense() {
         var amount = binding.editTvAmount.text.toString().toDouble()
-        var category = Category.fromInt(binding.category.text.toString().toInt())
+        var category = Category.INVESTMENT
         var note = binding.editTextWriteNote.text.toString()
         var mode = binding.spinnerPaymentMode.selectedItem.toString()
         val dateFormat = SimpleDateFormat("dd/MM/yyyy")
