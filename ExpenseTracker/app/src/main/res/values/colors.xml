@@ -8,4 +8,5 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="amount_in_addExpense">#8BC34A</color>
+    <color name="amount_in_list">#F33022</color>
 </resources>

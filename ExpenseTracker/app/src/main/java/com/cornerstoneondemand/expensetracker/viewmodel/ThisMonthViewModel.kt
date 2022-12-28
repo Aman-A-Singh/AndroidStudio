@@ -25,10 +25,10 @@ class ThisMonthViewModel(application: Application) : AndroidViewModel(applicatio
             val calendar = Calendar.getInstance()
             val currentMonth = calendar.get(Calendar.MONTH) + 1 // Calendar.MONTH is zero-based
             it.filter {
-                val calendar = Calendar.getInstance()
                 calendar.time = it.date
                 calendar.get(Calendar.MONTH) + 1 == currentMonth
             }
         }
     }
+
 }
