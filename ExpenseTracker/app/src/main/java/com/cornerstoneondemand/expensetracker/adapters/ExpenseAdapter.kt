@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.cornerstoneondemand.expensetracker.R
 import com.cornerstoneondemand.expensetracker.database.Expense
 import com.cornerstoneondemand.expensetracker.utilities.Category
+import com.cornerstoneondemand.expensetracker.utilities.getCategoryName
 
 class ExpenseAdapter(): RecyclerView.Adapter<ExpenseAdapter.ExpenseViewHolder> (){
 
@@ -23,17 +24,7 @@ class ExpenseAdapter(): RecyclerView.Adapter<ExpenseAdapter.ExpenseViewHolder> (
 
     override fun onBindViewHolder(holder: ExpenseViewHolder, position: Int) {
         val currentExpense =expenseList[position]
-        when(currentExpense.category_id){
-            Category.INVESTMENT-> holder.category.setText("Investment")
-            Category.FOOD_BEVERAGE -> holder.category.setText("Food And Beverage")
-            Category.BILLS -> holder.category.setText("Bills")
-            Category.TRANSPORTATION -> holder.category.setText("Transportation")
-            Category.SHOPPING -> holder.category.setText("Shopping")
-            Category.FRIENDS -> holder.category.setText("Friends&Love")
-            Category.ENTERTAINMENT -> holder.category.setText("Entertainment")
-            Category.TRAVEL -> holder.category.setText("Travel")
-            Category.HEALTH -> holder.category.setText("Health")
-        }
+        holder.category.setText(getCategoryName(currentExpense.category_id.value))
         holder.amount.text = currentExpense.amount.toString()
         holder.note.text = currentExpense.note
      }

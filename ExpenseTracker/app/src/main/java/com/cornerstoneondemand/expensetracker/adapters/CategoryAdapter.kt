@@ -10,7 +10,7 @@ import com.cornerstoneondemand.expensetracker.R
 import com.cornerstoneondemand.expensetracker.utilities.Category
 import de.hdodenhof.circleimageview.CircleImageView
 
-class CategoryAdapter : RecyclerView.Adapter<CategoryAdapter.CategoryViewHoldare>() {
+class CategoryAdapter(private val onItemClickListener: (Int) -> Unit) : RecyclerView.Adapter<CategoryAdapter.CategoryViewHoldare>() {
 
     private var categoryList = Category.values()
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CategoryViewHoldare {
@@ -68,5 +68,10 @@ class CategoryAdapter : RecyclerView.Adapter<CategoryAdapter.CategoryViewHoldare
     inner class CategoryViewHoldare(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val category = itemView.findViewById<TextView>(R.id.text_view_category_name)
         val categoryImage = itemView.findViewById<CircleImageView>(R.id.category_image)
+        init {
+            itemView.setOnClickListener {
+                onItemClickListener(adapterPosition)
+            }
+        }
     }
 }
