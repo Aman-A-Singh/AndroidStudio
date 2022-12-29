@@ -23,10 +23,10 @@ class LastMonthViewModel(application: Application) : AndroidViewModel(applicatio
         return Transformations.map(objects) {
             val calendar = Calendar.getInstance()
             val lastMonth = calendar.get(Calendar.MONTH)  // Calendar.MONTH is zero-based
+            val currentYear = calendar.get(Calendar.YEAR)
             it.filter {
-                val calendar = Calendar.getInstance()
                 calendar.time = it.date
-                calendar.get(Calendar.MONTH) + 1 == lastMonth
+                (calendar.get(Calendar.MONTH) + 1 == lastMonth) or (calendar.get(Calendar.YEAR)<currentYear)
             }
         }
     }
