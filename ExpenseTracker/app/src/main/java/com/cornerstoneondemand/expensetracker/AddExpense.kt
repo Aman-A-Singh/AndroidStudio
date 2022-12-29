@@ -28,6 +28,8 @@ class AddExpense : AppCompatActivity() {
         binding = ActivityAddExpenseBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+
+        binding.editTvAmount.setHint("₹ 0")
         viewModel = ViewModelProvider(this).get(AddExpenseViewModel::class.java)
 
         binding.textViewDate.setOnClickListener {
@@ -38,7 +40,7 @@ class AddExpense : AppCompatActivity() {
 
             val datePickerDialog = DatePickerDialog(
                 this,
-                DatePickerDialog.OnDateSetListener { _, year, month, day ->
+                 { _, year, month, day ->
                     viewModel.selectedDate.value = Calendar.getInstance().apply {
                         set(Calendar.YEAR, year)
                         set(Calendar.MONTH, month)
@@ -67,7 +69,7 @@ class AddExpense : AppCompatActivity() {
         binding.spinnerPaymentMode.adapter = arrayAdapter
 
         binding.category.setOnClickListener {
-            val intent: Intent = Intent(this, CategoryActivity::class.java)
+            val intent = Intent(this, CategoryActivity::class.java)
             startActivityForResult(intent, CATEGORY_REQUEST)
         }
     }
@@ -100,12 +102,11 @@ class AddExpense : AppCompatActivity() {
     }
 
     private fun saveExpense() {
-        var amount = binding.editTvAmount.text.toString().trim().toDouble()
-        var note = binding.editTextWriteNote.text.toString().trim()
-        var mode = binding.spinnerPaymentMode.selectedItem.toString().trim()
-        var date:Date = expenseDate
-        val dateFormat = SimpleDateFormat("dd/MM/yyyy")
-        val expense: Expense = Expense(0, amount, category, note, date, mode)
+        val amount = binding.editTvAmount.text.toString().trim().toDouble()
+        val note = binding.editTextWriteNote.text.toString().trim()
+        val mode = binding.spinnerPaymentMode.selectedItem.toString().trim()
+        val date:Date = expenseDate
+        val expense = Expense(0, amount, category, note, date, mode)
         viewModel.insert(expense)
         finish()
     }

@@ -9,4 +9,5 @@
     <color name="white">#FFFFFFFF</color>
     <color name="amount_in_addExpense">#8BC34A</color>
     <color name="amount_in_list">#F33022</color>
+    <color name="unselected_tab">#A8A8A8</color>
 </resources>
