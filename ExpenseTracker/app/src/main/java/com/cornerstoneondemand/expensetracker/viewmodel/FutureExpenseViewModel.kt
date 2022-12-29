@@ -23,10 +23,11 @@ class FutureExpenseViewModel(application: Application) : AndroidViewModel(applic
         return Transformations.map(objects) {
             val calendar = Calendar.getInstance()
             val currentMonth = calendar.get(Calendar.MONTH)  + 1 // Calendar.MONTH is zero-based
+            val currentYear = calendar.get(Calendar.YEAR)
             it.filter {
                 val calendar = Calendar.getInstance()
                 calendar.time = it.date
-                calendar.get(Calendar.MONTH) + 1 > currentMonth
+                (calendar.get(Calendar.MONTH) + 1 > currentMonth) or (calendar.get(Calendar.YEAR) > currentYear)
             }
         }
     }
