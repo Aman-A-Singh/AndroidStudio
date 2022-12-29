@@ -36,27 +36,27 @@ class CategoryAdapter(private val onItemClickListener: (Int) -> Unit) : Recycler
             }
             Category.TRANSPORTATION.value -> {
                 holder.category.setText("Transportation")
-                holder.categoryImage.setImageResource(R.drawable.investment)
+                holder.categoryImage.setImageResource(R.drawable.transportation)
             }
             Category.SHOPPING.value -> {
                 holder.category.setText("Shopping")
-                holder.categoryImage.setImageResource(R.drawable.investment)
+                holder.categoryImage.setImageResource(R.drawable.shopping)
             }
             Category.FRIENDS.value -> {
                 holder.category.setText("Friends&Love")
-                holder.categoryImage.setImageResource(R.drawable.investment)
+                holder.categoryImage.setImageResource(R.drawable.friends)
             }
             Category.ENTERTAINMENT.value -> {
                 holder.category.setText("Entertainment")
-                holder.categoryImage.setImageResource(R.drawable.investment)
+                holder.categoryImage.setImageResource(R.drawable.entertainment)
             }
             Category.TRAVEL.value -> {
                 holder.category.setText("Travel")
-                holder.categoryImage.setImageResource(R.drawable.investment)
+                holder.categoryImage.setImageResource(R.drawable.travel)
             }
             Category.HEALTH.value -> {
                 holder.category.setText("Health")
-                holder.categoryImage.setImageResource(R.drawable.investment)
+                holder.categoryImage.setImageResource(R.drawable.health)
             }
         }
     }

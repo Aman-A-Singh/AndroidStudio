@@ -50,7 +50,6 @@ class ThisMonthFragment : Fragment() {
         viewModel.thisMonthExpense.observe(viewLifecycleOwner) { list ->
             list?.let {
                 adapter.setExpense(list)
-                totalAmount = 10.0
             }
             val text_view_total = view.findViewById<TextView>(R.id.text_view_total)
             text_view_total.text = totalAmount.toString()
