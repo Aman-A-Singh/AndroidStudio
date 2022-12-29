@@ -21,7 +21,7 @@ class AddExpense : AppCompatActivity() {
     private lateinit var viewModel: AddExpenseViewModel
     private lateinit var binding: ActivityAddExpenseBinding
     private lateinit var category: Category
-    private var expenseDate =Date()
+    private var expenseDate = Date()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,7 +40,7 @@ class AddExpense : AppCompatActivity() {
 
             val datePickerDialog = DatePickerDialog(
                 this,
-                 { _, year, month, day ->
+                { _, year, month, day ->
                     viewModel.selectedDate.value = Calendar.getInstance().apply {
                         set(Calendar.YEAR, year)
                         set(Calendar.MONTH, month)
@@ -98,16 +98,27 @@ class AddExpense : AppCompatActivity() {
             val result: Int = data!!.getIntExtra(CATEGORY_RESULT, 0)
             binding.category.text = getCategoryName(result)
             category = Category.fromInt(result)!!
+            binding.category.error=null
         }
     }
 
     private fun saveExpense() {
-        val amount = binding.editTvAmount.text.toString().trim().toDouble()
-        val note = binding.editTextWriteNote.text.toString().trim()
-        val mode = binding.spinnerPaymentMode.selectedItem.toString().trim()
-        val date:Date = expenseDate
-        val expense = Expense(0, amount, category, note, date, mode)
-        viewModel.insert(expense)
-        finish()
+
+        if (binding.editTvAmount.text.isEmpty()) {
+            binding.editTvAmount.error = "Enter Valid Amount"
+        } else if (!::category.isInitialized) {
+            binding.category.error = "Select Valid Category"
+        } else if (binding.editTextWriteNote.text.isEmpty()) {
+            binding.editTextWriteNote.error = "Enter Note"
+        } else {
+            val amount = binding.editTvAmount.text.toString().trim().toDouble()
+            val note = binding.editTextWriteNote.text.toString().trim()
+            val mode = binding.spinnerPaymentMode.selectedItem.toString().trim()
+            val date: Date = expenseDate
+            val expense = Expense(0, amount, category, note, date, mode)
+            viewModel.insert(expense)
+            finish()
+        }
+
     }
 }
